@@ -6,7 +6,7 @@ type Props = {
   onChange(keyword: string): void;
 };
 
-export const Filter = ({ onChange }: Props) => (
+export const Filter = React.memo(({ onChange }: Props) => (
   <form
     role="search"
     className={`search-form ${styles.FormLook}`}
@@ -21,4 +21,4 @@ export const Filter = ({ onChange }: Props) => (
       }
     />
   </form>
-);
+));

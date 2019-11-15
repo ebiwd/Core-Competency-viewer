@@ -8,26 +8,27 @@ import { getTrainingResource } from '../../services/training/training';
 type TrainingResource = import('../../models/training').TrainingResource;
 
 export const Course = withRouter(({ match }) => {
-  const [course, setCourse] = useState<TrainingResource | null>(null);
-  const [domains, setDomains] = useState<
-    import('../../models/competency').CleanDomain[]
-  >([]);
-  const [found, setFound] = useState(true);
+  const [load, setLoad] = useState({
+    course: null as TrainingResource | null,
+    domains: [] as import('../../models/competency').CleanDomain[],
+    found: true
+  });
 
+  function resetState() {
+    setLoad({ course: null, domains: [], found: false });
+  }
   useEffect(() => {
     getTrainingResource(match.params.course)
       .then(({ courses, domains }) => {
-        setDomains(domains);
-        if (courses.length === 0) {
-          setCourse(null);
-          setFound(false);
-        } else {
-          setCourse(courses[0]);
-          setFound(true);
+        resetState();
+        if (courses.length > 0) {
+          setLoad({ course: courses[0], domains: domains, found: true });
         }
       })
-      .catch(_ => setFound(false));
+      .catch(error => resetState());
   }, [match.params.course]);
+
+  const { found, course, domains } = load;
 
   if (!found) {
     return (

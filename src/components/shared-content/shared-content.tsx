@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const SharedContent = () => {
+export const SharedContent = React.memo(() => {
   return (
     <>
       <div className="sharedaddy sd-sharing-enabled">
@@ -71,4 +71,4 @@ export const SharedContent = () => {
       </div>
     </>
   );
-};
+});

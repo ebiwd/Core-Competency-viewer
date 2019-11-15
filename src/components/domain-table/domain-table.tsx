@@ -8,7 +8,7 @@ type Props = {
   domains: import('../../models/competency').CleanDomain[];
 };
 
-export const DomainTable = ({ domains }: Props) => (
+export const DomainTable = React.memo(({ domains }: Props) => (
   <>
     {domains.map(({ id, title, competencies }) => (
       <div key={id}>
@@ -35,4 +35,4 @@ export const DomainTable = ({ domains }: Props) => (
       </div>
     ))}
   </>
-);
+));

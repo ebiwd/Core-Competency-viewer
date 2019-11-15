@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PrefaceTraining = () => (
+export const PrefaceTraining = React.memo(() => (
   <p>
     The BioExcel knowledge resource center is a repository for computational
     biomolecular training resources aggregated from BioExcel partners and third
@@ -14,4 +14,4 @@ export const PrefaceTraining = () => (
     . The training resources in the Knowledge Resource Center have been tagged
     with the BioExcel competencies.
   </p>
-);
+));

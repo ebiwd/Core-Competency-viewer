@@ -6,7 +6,7 @@ type Props = {
   courses: import('../../models/training').TrainingResource[];
 };
 
-export const TableCourses = ({ courses }: Props) =>
+export const TableCourses = React.memo(({ courses }: Props) =>
   courses.length < 1 ? null : (
     <table>
       <thead>
@@ -28,4 +28,5 @@ export const TableCourses = ({ courses }: Props) =>
         ))}
       </tbody>
     </table>
-  );
+  )
+);

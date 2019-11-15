@@ -6,7 +6,7 @@ type Props = {
   className?: string;
 };
 
-export const Select = ({ options, onChange, className }: Props) => (
+export const Select = React.memo(({ options, onChange, className }: Props) => (
   <select
     onChange={event => onChange(event.currentTarget.value)}
     className={className}
@@ -17,4 +17,4 @@ export const Select = ({ options, onChange, className }: Props) => (
       </option>
     ))}
   </select>
-);
+));

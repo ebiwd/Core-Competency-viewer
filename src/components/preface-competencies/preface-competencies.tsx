@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PrefaceCompetencies = () => (
+export const PrefaceCompetencies = React.memo(() => (
   <p>
     The BioExcel training programme is based on a competency profile. A
     competency is an observable ability of any professional, integrating
@@ -14,4 +14,4 @@ export const PrefaceCompetencies = () => (
     under each competency there is a link to all the training resources that we
     have identified as relevant.
   </p>
-);
+));
