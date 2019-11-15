@@ -1,7 +1,7 @@
 export interface CompetencyVersion {
   nid: string;
   title: string;
-  description: string;
+  description?: string;
   versions: Version[];
 }
 

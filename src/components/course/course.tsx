@@ -68,7 +68,7 @@ export const Course = withRouter(({ match }) => {
   return (
     <>
       <h1>{title}</h1>
-      {parse(description)}
+      {description && parse(description)}
 
       {url && <a href={url}>External link to the training resource.</a>}
 
