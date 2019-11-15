@@ -17,7 +17,7 @@
 .Collapsible__trigger {
   display: block;
   position: relative;
-  padding-right: 10px;
+  padding-right: 30px;
 }
 
 .Collapsible:focus-within {
