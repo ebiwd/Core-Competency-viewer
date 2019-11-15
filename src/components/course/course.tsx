@@ -64,14 +64,26 @@ export const Course = withRouter(({ match }) => {
     target_audience,
     learning_outcomes,
     trainers,
-    url
+    url,
+    type
   } = course;
   return (
     <>
       <h1>{title}</h1>
       {description && parse(description)}
 
-      {url && <a href={url}>External link to the training resource.</a>}
+      <div>
+        {url && (
+          <div>
+            <a href={url}>External link to the training resource.</a>
+          </div>
+        )}
+        {type && (
+          <div>
+            Type of training: <b>{type}</b>
+          </div>
+        )}
+      </div>
 
       {target_audience && (
         <>
