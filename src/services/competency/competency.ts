@@ -33,7 +33,7 @@ export function cleanupDomain(
 
   domains.forEach(({ nid, id, title, competencies }, index) => {
     const cleanCompetency = competencies
-      .filter(competency => competency.archived === 'no')
+      .filter(competency => ['no', '0'].includes(competency.archived))
       .map(competency => {
         const cleanAttributes = {
           Knowledge: [] as string[],
@@ -44,7 +44,7 @@ export function cleanupDomain(
         // competency.archived;
         competency.attributes.forEach(
           ({ title, type, archived }) =>
-            archived === 'no' &&
+            ['no', '0'].includes(competency.archived) &&
             cleanAttributes[type].push(title) &&
             allNoCase.push(title.toLowerCase())
         );
