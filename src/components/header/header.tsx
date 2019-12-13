@@ -9,13 +9,16 @@ export const Header = withRouter(({ location, history }) => {
 
   return (
     <header className="page-entry-header">
+      <div>
+        <h1>Knowledge Resource Center</h1>
+      </div>
       <h1
         className={`page-entry-title entry-title ${styles.Tab} ${
           showKrc ? '' : styles.Inactive
         }`}
         onClick={() => history.push('/training')}
       >
-        Knowledge Resource Center
+        Training Resources
       </h1>{' '}
       <h1
         className={`page-entry-title entry-title ${styles.Tab} ${

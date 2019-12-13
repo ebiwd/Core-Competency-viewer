@@ -6,7 +6,7 @@
 
 .Collapsible {
   padding: 8px 15px;
-  border: 1px solid #ededed;
+  /*border: 1px solid #ededed;*/
   border-top: 0px;
 }
 
@@ -46,4 +46,8 @@
 .exclamation-triangle:after {
   content: '\f071';
   font-family: 'FontAwesome';
+}
+
+.even {
+  background-color: #ccc;
 }

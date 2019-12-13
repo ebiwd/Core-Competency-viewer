@@ -75,12 +75,15 @@ export const Course = withRouter(({ match }) => {
       <div>
         {url && (
           <div>
-            <a href={url}>External link to the training resource.</a>
+            <a style={{ borderBottom: 'dashed 1px' }} href={url}>
+              External link to the training resource{' '}
+            </a>{' '}
+            <i className="fa fa-chevron-right"></i>
           </div>
         )}
         {type && (
           <div>
-            Type of training: <b>{type}</b>
+            <h2>Type of training</h2> {type}
           </div>
         )}
       </div>
@@ -101,7 +104,7 @@ export const Course = withRouter(({ match }) => {
 
       {trainers && (
         <>
-          <h2>Trainers</h2>
+          <h2>Provider(s)</h2>
           {parse(trainers)}
         </>
       )}
