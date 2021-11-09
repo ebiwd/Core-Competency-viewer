@@ -16,9 +16,7 @@ let data: {
   competency_profile: [{ competency_id: 'string' }];
 }[] = [];
 
-fetch(
-  'https://dev-competency-mapper.pantheonsite.io/api/resources?_format=json'
-)
+fetch('https://cms.competency.ebi.ac.uk/api/resources?_format=json')
   .then(function(response) {
     return response.json();
   })
@@ -66,7 +64,7 @@ export const DomainTable = React.memo(({ domains }: Props) => (
                                 ) === index
                             )
                             .map(profile => {
-                              if (profile.competency_id.toString() == id) {
+                              if (profile.competency_id.toString() === id) {
                                 //console.log(id +" "+ item.title)
 
                                 return (
@@ -76,6 +74,8 @@ export const DomainTable = React.memo(({ domains }: Props) => (
                                     </Link>
                                   </li>
                                 );
+                              } else {
+                                return null;
                               }
                             })
                         )}
