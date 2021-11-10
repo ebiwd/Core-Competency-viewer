@@ -8,7 +8,7 @@ import { TrainingResources } from '../training-resources/training-resources';
 import { CoreCompetencies } from '../core-competencies/core-competencies';
 import { SharedContent } from '../shared-content/shared-content';
 
-import { getTrainingResources } from '../../services/training/training';
+// import { getTrainingResources } from '../../services/training/training';
 import {
   getBioExcelDomains,
   getLatestBioExcelVersion
@@ -19,15 +19,15 @@ export const Root = () => {
   const [domains, setDomains] = useState<
     import('../../models/competency').CleanDomain[]
   >([]);
-  const [courses, setCourses] = useState<
-    import('../../models/training').TrainingResource[]
-  >([]);
+  // const [courses, setCourses] = useState<
+  //  import('../../models/training').TrainingResource[]
+  //>([]);
 
   useEffect(() => {
-    const fetchTraining = async () => {
-      const newCourses = await getTrainingResources();
-      setCourses(newCourses);
-    };
+    // const fetchTraining = async () => {
+    //   const newCourses = await getTrainingResources();
+    //   setCourses(newCourses);
+    // };
 
     const fetchCompetencies = async () => {
       const version = await getLatestBioExcelVersion();
@@ -36,7 +36,8 @@ export const Root = () => {
       setDomains(domains);
     };
 
-    Promise.all([fetchTraining(), fetchCompetencies()]);
+    // Promise.all([fetchTraining(), fetchCompetencies()]);
+    Promise.all([fetchCompetencies()]);
   }, []);
 
   return (
@@ -48,10 +49,7 @@ export const Root = () => {
 
         <Switch>
           <Route path="/training/:course" render={() => <Course />} />
-          <Route
-            path="/training"
-            render={() => <TrainingResources courses={courses} />}
-          />
+          <Route path="/training" render={() => <TrainingResources />} />
           <Route
             path="/competencies"
             render={() => (

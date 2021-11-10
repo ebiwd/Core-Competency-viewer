@@ -4,8 +4,9 @@ import { PrefaceTraining } from '../preface-training/preface-training';
 import { Filter } from '../filter/filter';
 import { TableCourses } from '../table-courses/table-courses';
 import { Select } from '../select/select';
-
+import Pagination from '../Pagination';
 import styles from './training-resources.module.css';
+import { getTrainingResources } from '../../services/training/training';
 
 type TrainingResource = import('../../models/training').TrainingResource;
 
@@ -13,13 +14,18 @@ type Props = {
   courses: TrainingResource[];
 };
 
-export const TrainingResources = ({ courses }: Props) => {
+// export const TrainingResources = ({ courses }: Props) => {
+export const TrainingResources = (Props: any) => {
+  const [courses, setCourses] = useState<
+    import('../../models/training').TrainingResource[]
+  >([]);
   const [filteredCourses, setFilteredCourses] = useState(courses);
   const [keyword, setKeyword] = useState('');
   const [options, setOptions] = useState([] as string[]);
   const [topic, setTopic] = useState('');
   const [kindOptions, setKindOptions] = useState([] as string[]);
   const [kind, setKind] = useState('');
+  const [pageNumber, setPageNumber] = useState<number>(1);
 
   function unique(words: string[]): string[] {
     // return [...new Set(words)];
@@ -31,6 +37,15 @@ export const TrainingResources = ({ courses }: Props) => {
       )
     );
   }
+
+  useEffect(() => {
+    const fetchTraining = async () => {
+      const newCourses = await getTrainingResources(pageNumber);
+      setCourses(newCourses);
+    };
+
+    Promise.all([fetchTraining()]);
+  }, [pageNumber]);
 
   useEffect(() => {
     setFilteredCourses(courses);
@@ -62,6 +77,11 @@ export const TrainingResources = ({ courses }: Props) => {
     );
   }, [keyword, topic, kind, courses]);
 
+  const changePageNumber = (page: number) => {
+    setPageNumber(page);
+    console.log(page);
+  };
+
   return (
     <>
       <PrefaceTraining />
@@ -81,6 +101,11 @@ export const TrainingResources = ({ courses }: Props) => {
       </div>
 
       <TableCourses courses={filteredCourses} />
+      <Pagination
+        hitcount={filteredCourses[0] ? filteredCourses[0].hitcount : 0}
+        pageNumber={pageNumber}
+        changePageNumber={changePageNumber}
+      />
     </>
   );
 };

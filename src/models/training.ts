@@ -17,6 +17,7 @@ export interface TrainingResource {
   author: string;
   competency_profile: Competencyprofile[];
   allNoCase: string; // To facilitate the search
+  hitcount: string;
 }
 
 interface Competencyprofile {

@@ -4,9 +4,13 @@ import { cleanupDomain } from '../competency/competency';
 
 type TrainingResource = import('../../models/training').TrainingResource;
 
-export async function getTrainingResources(): Promise<TrainingResource[]> {
-  const response = await http.get<TrainingResource[]>('resources');
-
+export async function getTrainingResources(
+  pageNumber: number
+): Promise<TrainingResource[]> {
+  // const response = await http.get<TrainingResource[]>('resources');
+  const response = await http.get<TrainingResource[]>(
+    `competency_framework_resources?timestamp=16365417535588&page=${pageNumber}&title=&type=&framework=BioExcel`
+  );
   return cleanupTraining(response.data);
 }
 
