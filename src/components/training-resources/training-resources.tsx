@@ -7,6 +7,7 @@ import { Select } from '../select/select';
 import Pagination from '../Pagination';
 import styles from './training-resources.module.css';
 import { getTrainingResources } from '../../services/training/training';
+import { type } from 'os';
 
 type TrainingResource = import('../../models/training').TrainingResource;
 
@@ -23,9 +24,11 @@ export const TrainingResources = (Props: any) => {
   const [keyword, setKeyword] = useState('');
   const [options, setOptions] = useState([] as string[]);
   const [topic, setTopic] = useState('');
-  const [kindOptions, setKindOptions] = useState([] as string[]);
+  // const [kindOptions, setKindOptions] = useState([] as string[]);
   const [kind, setKind] = useState('');
   const [pageNumber, setPageNumber] = useState<number>(1);
+
+  const kindOptions = ['Type', 'Online', 'Face-to-Face'];
 
   function unique(words: string[]): string[] {
     // return [...new Set(words)];
@@ -40,12 +43,12 @@ export const TrainingResources = (Props: any) => {
 
   useEffect(() => {
     const fetchTraining = async () => {
-      const newCourses = await getTrainingResources(pageNumber);
+      const newCourses = await getTrainingResources(pageNumber, kind, keyword);
       setCourses(newCourses);
     };
 
     Promise.all([fetchTraining()]);
-  }, [pageNumber]);
+  }, [pageNumber, kind, keyword]);
 
   useEffect(() => {
     setFilteredCourses(courses);
@@ -57,25 +60,25 @@ export const TrainingResources = (Props: any) => {
       [] as string[]
     );
     setOptions(['Topic', ...unique(topics)]);
-    const kinds = courses.reduce(
-      (keywords, course) => [...keywords, course.type],
-      [] as string[]
-    );
-    setKindOptions(['Type', ...unique(kinds)]);
+    // const kinds = courses.reduce(
+    //   (keywords, course) => [...keywords, course.type],
+    //   [] as string[]
+    // );
+    // setKindOptions(['Type', ...unique(kinds)]);
   }, [courses]);
 
-  useEffect(() => {
-    setFilteredCourses(
-      courses.filter(course => {
-        const keywords = course.keywords || '';
-        return (
-          keywords.includes(topic) &&
-          course.type.includes(kind) &&
-          course.allNoCase.includes(keyword)
-        );
-      })
-    );
-  }, [keyword, topic, kind, courses]);
+  // useEffect(() => {
+  //   setFilteredCourses(
+  //     courses.filter(course => {
+  //       const keywords = course.keywords || '';
+  //       return (
+  //         keywords.includes(topic) &&
+  //         course.type.includes(kind) &&
+  //         course.allNoCase.includes(keyword)
+  //       );
+  //     })
+  //   );
+  // }, [keyword, topic, kind, courses]);
 
   const changePageNumber = (page: number) => {
     setPageNumber(page);
