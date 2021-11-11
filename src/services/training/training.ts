@@ -7,11 +7,12 @@ type TrainingResource = import('../../models/training').TrainingResource;
 export async function getTrainingResources(
   pageNumber: number,
   type: string,
-  keyword: string
+  keyword: string,
+  topic: string
 ): Promise<TrainingResource[]> {
   // const response = await http.get<TrainingResource[]>('resources');
   const response = await http.get<TrainingResource[]>(
-    `competency_framework_resources?timestamp=${Date.now()}&page=${pageNumber}&title=${keyword}&type=${type}&framework=BioExcel`
+    `competency_framework_resources?timestamp=${Date.now()}&page=${pageNumber}&title=${keyword}&type=${type}&topic=${topic}&framework=BioExcel`
   );
   return cleanupTraining(response.data);
 }

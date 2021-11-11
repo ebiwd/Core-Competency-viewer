@@ -15,7 +15,7 @@ export const Filter = React.memo(({ onChange }: Props) => (
     <input
       type="search"
       className="search-field"
-      placeholder="Filter by keyword"
+      placeholder="Type to search"
       onKeyUp={event =>
         onChange(event.currentTarget.value.trim().toLowerCase())
       }

@@ -43,12 +43,17 @@ export const TrainingResources = (Props: any) => {
 
   useEffect(() => {
     const fetchTraining = async () => {
-      const newCourses = await getTrainingResources(pageNumber, kind, keyword);
+      const newCourses = await getTrainingResources(
+        pageNumber,
+        kind,
+        keyword,
+        topic
+      );
       setCourses(newCourses);
     };
 
     Promise.all([fetchTraining()]);
-  }, [pageNumber, kind, keyword]);
+  }, [pageNumber, kind, keyword, topic]);
 
   useEffect(() => {
     setFilteredCourses(courses);
