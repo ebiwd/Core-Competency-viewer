@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import { PrefaceTraining } from '../preface-training/preface-training';
-import { Filter } from '../filter/filter';
+import { FilterResources } from '../filter/filterResources';
 import { TableCourses } from '../table-courses/table-courses';
 import { Select } from '../select/select';
 import Pagination from '../Pagination';
 import styles from './training-resources.module.css';
 import { getTrainingResources } from '../../services/training/training';
-import { type } from 'os';
 
 type TrainingResource = import('../../models/training').TrainingResource;
 
@@ -93,8 +92,7 @@ export const TrainingResources = (Props: any) => {
   return (
     <>
       <PrefaceTraining />
-
-      <Filter onChange={setKeyword} />
+      <FilterResources setKeyword={setKeyword} />
 
       <div className={styles.LowerSpace}>
         <span className={styles.RightSpace}>Or filter by:</span>
