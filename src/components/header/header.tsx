@@ -50,7 +50,7 @@ export const Header = withRouter(({ location, history }) => {
         }`}
         onClick={() => history.push('/career-profiles')}
       >
-        Career profiles
+        Career Profiles
       </h1>
     </header>
   );

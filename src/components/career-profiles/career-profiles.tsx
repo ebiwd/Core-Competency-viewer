@@ -11,7 +11,7 @@ export const CareerProfiles = () => {
         job and inform your career choices.
       </p>
       List of career profiles for Professionals in computational biomolecular
-      research created by BioExcel:-
+      research created by BioExcel:
       <ul>
         <li>
           <a href="https://competency.ebi.ac.uk/framework/bioexcel/3.0/profile/view/10115/alex-2">
