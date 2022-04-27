@@ -6,6 +6,7 @@ import { ProgressBar } from '../progress-bar/progress-bar';
 import { Course } from '../course/course';
 import { TrainingResources } from '../training-resources/training-resources';
 import { CoreCompetencies } from '../core-competencies/core-competencies';
+import { CareerProfiles } from '../career-profiles/career-profiles';
 import { SharedContent } from '../shared-content/shared-content';
 
 import { getTrainingResources } from '../../services/training/training';
@@ -58,6 +59,7 @@ export const Root = () => {
               <CoreCompetencies version={version} domains={domains} />
             )}
           />
+          <Route path="/career-profiles" render={() => <CareerProfiles />} />
           <Redirect exact from="/" to="/training" />
           <Redirect to="/training" />
         </Switch>

@@ -6,6 +6,22 @@ import styles from './header.module.css';
 
 export const Header = withRouter(({ location, history }) => {
   const showKrc = location.pathname.startsWith('/training');
+  const showCompetencies = location.pathname.startsWith('/competencies');
+  const showProfiles = location.pathname.startsWith('/profiles');
+
+  let showTab = '';
+
+  if (location.pathname.startsWith('/training')) {
+    showTab = 'training';
+  }
+
+  if (location.pathname.startsWith('/competencies')) {
+    showTab = 'competencies';
+  }
+
+  if (location.pathname.startsWith('/career-profiles')) {
+    showTab = 'career-profiles';
+  }
 
   return (
     <header className="page-entry-header">
@@ -14,7 +30,7 @@ export const Header = withRouter(({ location, history }) => {
       </div>
       <h1
         className={`page-entry-title entry-title ${styles.Tab} ${
-          showKrc ? '' : styles.Inactive
+          showTab === 'training' ? '' : styles.Inactive
         }`}
         onClick={() => history.push('/training')}
       >
@@ -22,11 +38,19 @@ export const Header = withRouter(({ location, history }) => {
       </h1>{' '}
       <h1
         className={`page-entry-title entry-title ${styles.Tab} ${
-          showKrc ? styles.Inactive : ''
+          showTab === 'competencies' ? '' : styles.Inactive
         }`}
         onClick={() => history.push('/competencies')}
       >
         Core Competencies
+      </h1>{' '}
+      <h1
+        className={`page-entry-title entry-title ${styles.Tab} ${
+          showTab === 'career-profiles' ? '' : styles.Inactive
+        }`}
+        onClick={() => history.push('/career-profiles')}
+      >
+        Career profiles
       </h1>
     </header>
   );
